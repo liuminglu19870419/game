@@ -1,0 +1,7 @@
+frame = luajava.newInstance("javax.swing.JFrame","我是一个由Lua脚本调用的窗体")
+frame:setSize(300,300)
+frame:setLocation(0,0)
+panel = luajava.newInstance("javax.swing.JPanel")
+frame:setContentPane(panel)
+frame:setDefaultCloseOperation(2) 
+frame:setVisible(true)
