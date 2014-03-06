@@ -7,7 +7,14 @@ public final class ConstVar {
 
 	//全局参数定义
 	public final static String LIST_ELEMENT_SEPERATOR = "%%%";//用来描述属性中涉及list的属性，作为list各个属性的分隔符
-
+	
+	
+	public final static String GAME_CURSOR = "images/cursor.png";
+	public final static int FPS = 100;
+	
+	public final static int GLOBAL_WIDTH = 1440;
+	public final static int GLOBAL_HEIGHT = 960;
+	
 	public final static int COMMON_SIDE_PAPER_X = 50;//侧边组件的x坐标
 	public final static int COMMON_SIDE_PAPER_Y = 50;//侧边组件的y坐标
 	public final static int COMMON_SIDE_PAPER_WIDTH_BORD = 10;//侧边组件内部按钮距离组件x方向边框宽度
@@ -15,6 +22,7 @@ public final class ConstVar {
 	public final static int COMMON_SIDE_BUR_WIDTH = 100;//侧边组件按钮宽度
 	public final static int COMMON_SIDE_BUR_HEIGHT = 50;//侧边组件按钮高度
 	public final static String COMMON_SIDE_BUR_IMAGE = "images/button.png";//侧边按钮背景图
+	public final static float COMMON_SIDE_ALPHA = 0.1f;//侧边组件按钮高度
 	
 	public final static int COMMON_BOTTOM_PAPER_X = 100;//底边组件的x坐标
 	public final static int COMMON_BOTTOM_PAPER_Y = 100;//底边组件的y坐标

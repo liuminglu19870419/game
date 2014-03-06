@@ -6,7 +6,7 @@ import java.awt.event.MouseEvent;
 import org.loon.framework.javase.game.core.graphics.Screen;
 import org.loon.framework.javase.game.core.graphics.device.LGraphics;
 
-public class ScreenTemplage extends Screen {
+public class ScreenTemplate extends Screen {
 
 	@Override
 	public void draw(LGraphics g) {
