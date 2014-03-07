@@ -3,11 +3,11 @@ package aaa.game.global.button;
 import aaa.game.component.button.ButtonSideTemplate;
 
 /**
- * 离开某个城市前往另一个城市
+ * 成为皇帝或者退位为平民 
  */
 public class OutButton extends ButtonSideTemplate {
 	public OutButton() {
 		super();
-		setText("出城");
+		setText("起义");
 	}
 }

@@ -4,12 +4,9 @@
  */
 package aaa.game.mainframe;
 
-import java.util.LinkedList;
-import java.util.List;
 import java.util.Stack;
 
 import org.loon.framework.javase.game.GameScene;
-import org.loon.framework.javase.game.core.graphics.Screen;
 
 import aaa.game.component.screen.ScreenTemplate;
 import aaa.game.constv.ConstVar;
@@ -24,12 +21,13 @@ public class MainFrame extends GameScene {
 	private MainFrame() {
 		super("game", ConstVar.GLOBAL_WIDTH, ConstVar.GLOBAL_HEIGHT);
 		this.setCursor(ConstVar.GAME_CURSOR);
-		GlobalScreen screen = new GlobalScreen();
-		pushScreen(screen);
+		this.getDeploy().setLogo(false);
 	}
 
 	public static void start() {
 		mainFrame = new MainFrame();
+		GlobalScreen screen = new GlobalScreen();
+		pushScreen(screen);
 		mainFrame.showFrame();
 	}
 
@@ -47,9 +45,9 @@ public class MainFrame extends GameScene {
 			currentScreen = screenStack.peek();
 			startScreen(currentScreen);
 		}
-		
+
 	}
-	
+
 	private static void startScreen(ScreenTemplate screenTemplate) {
 		mainFrame.getDeploy().setScreen(screenTemplate);
 		mainFrame.getDeploy().mainLoop();

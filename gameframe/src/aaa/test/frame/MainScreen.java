@@ -41,16 +41,23 @@ public class MainScreen extends Screen {
 	int bottomPanelHeight = 0;
 	int bottomPanelWidth = 0;
 
+	int lButtonx = 500;
+	int lButtony = 500;
+	LButton lButton = new LButton("images/button.png");
+	{
+		lButton.setLocation(500, 500);
+		add(lButton);
+	}
 	List<LButton> buttons2 = new ArrayList<>();
 	List<LButton> buttons = new ArrayList<>();
 
 	int deltax = 0;
 	int deltay = 0;
 
-	String[] itemStrings = { "�г�", "�ƹ�", "����", "�ݸ�", "��Ժ", "ѧ��", "�ֵ�", "���� ",
-			"���� " };
-	String[] peopleStrings = { "�г� ����", "�ƹ� ·��", "���� ·��", "�ݸ� ·��", "��Ժ ·��",
-			"ѧ�� ·��", "�ֵ� ·��", "���� ·�� ", "���� ·�� " };
+	String[] itemStrings = { "�г�", "�ƹ�", "����", "�ݸ�", "��Ժ", "ѧ��", "�ֵ�",
+			"���� ", "���� " };
+	String[] peopleStrings = { "�г� ����", "�ƹ� ·��", "���� ·��", "�ݸ� ·��",
+			"��Ժ ·��", "ѧ�� ·��", "�ֵ� ·��", "���� ·�� ", "���� ·�� " };
 
 	public MainScreen() {
 		// TODO Auto-generated constructor stub
@@ -94,6 +101,7 @@ public class MainScreen extends Screen {
 			// i * 60, 500);
 			buttons2.add(lButton);
 			add(lButton);
+
 		}
 
 		lPanel1 = new LPaper(0, 0, titlePanelWidth, titlePanelHeight);
@@ -158,7 +166,7 @@ public class MainScreen extends Screen {
 			imagey += ySpeed;
 			ySpeed++;
 			if (imagey > 3200 - 960) {
-				imagey = 3200  - 960;
+				imagey = 3200 - 960;
 				ySpeed = 5;
 			}
 		} else {
@@ -207,6 +215,7 @@ public class MainScreen extends Screen {
 		GraphicsUtils.setAntialias((Graphics) g, true);
 		System.out.println(imagex);
 		System.out.println(imagey);
+		lButton.setLocation(-imagex + 200, -imagey + 200);
 		g.drawImage(bufferedImage.getSubimage(imagex, imagey, 1440, 960), null,
 				0, 0);
 		g.setFont(GraphicsUtils.getFont("������κ", 20));

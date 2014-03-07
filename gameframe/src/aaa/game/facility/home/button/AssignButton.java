@@ -1,4 +1,4 @@
-package aaa.game.global.button;
+package aaa.game.facility.home.button;
 
 import aaa.game.component.button.ButtonSideTemplate;
 

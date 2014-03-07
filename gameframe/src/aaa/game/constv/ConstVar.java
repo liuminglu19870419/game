@@ -15,14 +15,14 @@ public final class ConstVar {
 	public final static int GLOBAL_WIDTH = 1440;
 	public final static int GLOBAL_HEIGHT = 960;
 	
-	public final static int COMMON_SIDE_PAPER_X = 50;//侧边组件的x坐标
-	public final static int COMMON_SIDE_PAPER_Y = 50;//侧边组件的y坐标
+	public final static int COMMON_SIDE_PAPER_X = 0;//侧边组件的x坐标
+	public final static int COMMON_SIDE_PAPER_Y = 90;//侧边组件的y坐标
 	public final static int COMMON_SIDE_PAPER_WIDTH_BORD = 10;//侧边组件内部按钮距离组件x方向边框宽度
 	public final static int COMMON_SIDE_PAPER_HEIGHT_BORD = 10;//侧边组件内部按钮距离组件y方向边框宽度
-	public final static int COMMON_SIDE_BUR_WIDTH = 100;//侧边组件按钮宽度
+	public final static int COMMON_SIDE_BUR_WIDTH = 125;//侧边组件按钮宽度
 	public final static int COMMON_SIDE_BUR_HEIGHT = 50;//侧边组件按钮高度
 	public final static String COMMON_SIDE_BUR_IMAGE = "images/button.png";//侧边按钮背景图
-	public final static float COMMON_SIDE_ALPHA = 0.1f;//侧边组件按钮高度
+	public final static float COMMON_SIDE_ALPHA = 0.f;//侧边组件按钮高度
 	
 	public final static int COMMON_BOTTOM_PAPER_X = 100;//底边组件的x坐标
 	public final static int COMMON_BOTTOM_PAPER_Y = 100;//底边组件的y坐标
@@ -32,6 +32,12 @@ public final class ConstVar {
 	public final static int COMMON_BOTTOM_BUR_HEIGHT = 90;//底边组件按钮宽度
 	public final static int COMMON_BOTTOM_BUR_MAXX_SIZE = 10;//底边组件按钮每行最大数目
 	
+	//全局地图相关数据
+	static public class GlobalMap {
+		public final static String MAP = "images/1.jpg";
+		public final static int MAP_WIDTH = 1920;
+		public final static int MAP_HEIGHT = 1080;
+	}
 	//数据定义
 	static public class People {
 		public final static String PEOPLE_ID_PRE = "rol";

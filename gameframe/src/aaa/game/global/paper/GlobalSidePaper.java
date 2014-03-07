@@ -53,6 +53,7 @@ public class GlobalSidePaper extends PaperSideTemplate {
 			lButton.setLocation(ConstVar.COMMON_SIDE_PAPER_WIDTH_BORD,
 					ConstVar.COMMON_SIDE_PAPER_HEIGHT_BORD + index
 							* ConstVar.COMMON_SIDE_BUR_HEIGHT);
+			index ++;
 			add(lButton);
 		}
 	}

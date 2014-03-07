@@ -7,6 +7,6 @@ import aaa.game.component.button.ButtonSideTemplate;
 public class AttackButton extends ButtonSideTemplate{
 	public AttackButton() {
 		super();
-		setText("攻略");
+		setText("进攻");
 	}
 }

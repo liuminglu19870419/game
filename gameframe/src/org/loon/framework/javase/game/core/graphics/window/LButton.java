@@ -7,6 +7,7 @@ import java.awt.image.BufferedImage;
 import org.loon.framework.javase.game.core.graphics.LComponent;
 import org.loon.framework.javase.game.core.graphics.filter.ImageFilterFactory;
 import org.loon.framework.javase.game.utils.GraphicsUtils;
+import org.omg.CORBA.SetOverrideType;
 
 /**
  * 
@@ -34,7 +35,13 @@ public class LButton extends LComponent {
 
 	private String text = "";
 
-	private boolean over, pressed, exception;
+	private boolean over, pressed, exception, isForceSelect = false;
+
+	public void setForceSelect(boolean select) {
+		this.isForceSelect = select;
+		this.over = select;
+		this.pressed = select;
+	}
 
 	private int pressedTime;
 
@@ -150,16 +157,16 @@ public class LButton extends LComponent {
 	 */
 	public void doClick() {
 	}
-	
-	public void downClick(){
-		
+
+	public void downClick() {
+
 	}
 
-	public void upClick(){
-		
+	public void upClick() {
+
 	}
-	
-	public boolean isPressed(){
+
+	public boolean isPressed() {
 		return pressed;
 	}
 
@@ -188,7 +195,9 @@ public class LButton extends LComponent {
 	}
 
 	protected void processMouseExited() {
-		this.over = this.pressed = false;
+		if (!isForceSelect) {
+			this.over = this.pressed = false;
+		}
 	}
 
 	protected void processKeyPressed() {

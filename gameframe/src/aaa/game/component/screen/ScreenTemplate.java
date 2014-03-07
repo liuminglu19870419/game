@@ -7,6 +7,7 @@ import org.loon.framework.javase.game.core.graphics.Screen;
 import org.loon.framework.javase.game.core.graphics.device.LGraphics;
 
 public class ScreenTemplate extends Screen {
+	 
 
 	@Override
 	public void draw(LGraphics g) {
