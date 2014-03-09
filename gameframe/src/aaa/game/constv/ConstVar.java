@@ -24,13 +24,13 @@ public final class ConstVar {
 	public final static String COMMON_SIDE_BUR_IMAGE = "images/button.png";//侧边按钮背景图
 	public final static float COMMON_SIDE_ALPHA = 0.f;//侧边组件按钮高度
 	
-	public final static int COMMON_BOTTOM_PAPER_X = 100;//底边组件的x坐标
-	public final static int COMMON_BOTTOM_PAPER_Y = 100;//底边组件的y坐标
+	public final static int COMMON_BOTTOM_PAPER_X = 110;//底边组件的x坐标
+	public final static int COMMON_BOTTOM_PAPER_Y = 700;//底边组件的y坐标
 	public final static int COMMON_BOTTOM_PAPER_WIDTH_BORD = 10;//底边组件内部按钮距离组件x方向边框宽度 
 	public final static int COMMON_BOTTOM_PAPER_HEIGHT_BORD = 10;//底边组件内部按钮距离组件x方向边框宽度 
-	public final static int COMMON_BOTTOM_BUR_WIDTH = 90;//底边组件按钮宽度
-	public final static int COMMON_BOTTOM_BUR_HEIGHT = 90;//底边组件按钮宽度
-	public final static int COMMON_BOTTOM_BUR_MAXX_SIZE = 10;//底边组件按钮每行最大数目
+	public final static int COMMON_BOTTOM_BUR_WIDTH = 100;//底边组件按钮宽度
+	public final static int COMMON_BOTTOM_BUR_HEIGHT = 100;//底边组件按钮宽度
+	public final static int COMMON_BOTTOM_BUR_MAXX_SIZE = 13;//底边组件按钮每行最大数目
 	
 	//全局地图相关数据
 	static public class GlobalMap {
@@ -53,6 +53,7 @@ public final class ConstVar {
 		public final static String CITY_ID_PRE = "cty";
 		public final static String NAME_KEY = "name";
 		public final static String FACILITIES_KEY = "facilities";
+		public final static String CITY_BACK_IMAGE = "background";
 	}
 
 	static public class Facility {
@@ -60,6 +61,7 @@ public final class ConstVar {
 		public final static String NAME_KEY = "name";
 		public final static String CITY_KEY = "city";
 		public final static String PEOPLES_KEY = "roles";
+		public final static String BUTTON_KEY = "button";
 	}
 
 	static public class Item {

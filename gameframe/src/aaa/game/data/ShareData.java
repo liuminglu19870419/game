@@ -21,6 +21,8 @@ public class ShareData {
 		// 街道测试
 		cities.set(ConstVar.City.CITY_ID_PRE + "00100", ConstVar.City.NAME_KEY,
 				"city1");
+		cities.set(ConstVar.City.CITY_ID_PRE + "00100",
+				ConstVar.City.CITY_BACK_IMAGE, "images/2.jpg");
 		cities.add(ConstVar.City.CITY_ID_PRE + "00100",
 				ConstVar.City.FACILITIES_KEY, ConstVar.Facility.FACILITY_ID_PRE
 						+ "00100");
@@ -32,6 +34,8 @@ public class ShareData {
 						+ "00102");
 		cities.set(ConstVar.City.CITY_ID_PRE + "00101", ConstVar.City.NAME_KEY,
 				"city2");
+		cities.set(ConstVar.City.CITY_ID_PRE + "00101",
+				ConstVar.City.CITY_BACK_IMAGE, "images/2.jpg");
 		cities.add(ConstVar.City.CITY_ID_PRE + "00101",
 				ConstVar.City.FACILITIES_KEY, ConstVar.Facility.FACILITY_ID_PRE
 						+ "00103");
@@ -61,7 +65,18 @@ public class ShareData {
 				ConstVar.People.NAME_KEY, "c2_sD_r8");
 		peoples.set(ConstVar.People.PEOPLE_ID_PRE + "00108",
 				ConstVar.People.NAME_KEY, "c2_sD_r9");
-
+		peoples.set(ConstVar.People.PEOPLE_ID_PRE + "00100",
+				ConstVar.People.PEOPLE_IMAGE_KEY, "images/loli.png");
+		peoples.set(ConstVar.People.PEOPLE_ID_PRE + "00101",
+				ConstVar.People.PEOPLE_IMAGE_KEY, "images/loli.png");
+		peoples.set(ConstVar.People.PEOPLE_ID_PRE + "00102",
+				ConstVar.People.PEOPLE_IMAGE_KEY, "images/loli.png");
+		peoples.set(ConstVar.People.PEOPLE_ID_PRE + "00103",
+				ConstVar.People.PEOPLE_IMAGE_KEY, "images/loli.png");
+		peoples.set(ConstVar.People.PEOPLE_ID_PRE + "00104",
+				ConstVar.People.PEOPLE_IMAGE_KEY, "images/loli.png");
+		peoples.set(ConstVar.People.PEOPLE_ID_PRE + "00105",
+				ConstVar.People.PEOPLE_IMAGE_KEY, "images/loli.png");
 		// 设施测试
 		/***********************************************************/
 		facilities.set(ConstVar.Facility.FACILITY_ID_PRE + "00100",

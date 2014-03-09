@@ -47,8 +47,12 @@ public class Data implements IModel {
 		// TODO Auto-generated method stub
 		if (map.containsKey(id)) {
 			String curString = map.get(id).get(attribuate);
-			map.get(id).put(attribuate,
-					curString + ConstVar.LIST_ELEMENT_SEPERATOR + value);
+			if (curString == null) {
+				curString = value;
+			} else {
+				curString = curString + ConstVar.LIST_ELEMENT_SEPERATOR + value;
+			}
+			map.get(id).put(attribuate, curString);
 		} else {
 			Map<String, String> tempMap = new HashMap<>();
 			tempMap.put(attribuate, value);

@@ -7,6 +7,7 @@ package aaa.game.mainframe;
 import java.util.Stack;
 
 import org.loon.framework.javase.game.GameScene;
+import org.loon.framework.javase.game.core.graphics.Deploy;
 
 import aaa.game.component.screen.ScreenTemplate;
 import aaa.game.constv.ConstVar;
@@ -28,6 +29,7 @@ public class MainFrame extends GameScene {
 		mainFrame = new MainFrame();
 		GlobalScreen screen = new GlobalScreen();
 		pushScreen(screen);
+		mainFrame.getDeploy().mainLoop();
 		mainFrame.showFrame();
 	}
 
@@ -50,7 +52,8 @@ public class MainFrame extends GameScene {
 
 	private static void startScreen(ScreenTemplate screenTemplate) {
 		mainFrame.getDeploy().setScreen(screenTemplate);
-		mainFrame.getDeploy().mainLoop();
+//		mainFrame.setDeploy(new Deploy(screenTemplate.getHandler()));
+//		mainFrame.getDeploy().mainLoop();
 	}
 
 	public static MainFrame getFrame() {

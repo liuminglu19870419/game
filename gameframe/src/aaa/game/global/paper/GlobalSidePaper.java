@@ -5,6 +5,7 @@ import java.util.List;
 
 import org.loon.framework.javase.game.core.graphics.window.LButton;
 
+import aaa.game.component.button.ButtonSideTemplate;
 import aaa.game.component.paper.PaperSideTemplate;
 import aaa.game.constv.ConstVar;
 import aaa.game.global.button.AttackButton;
@@ -16,7 +17,7 @@ import aaa.game.global.button.PauseButton;
 public class GlobalSidePaper extends PaperSideTemplate {
 
 	private static final int button_count = 5;
-	private List<LButton> buttons = new ArrayList<>();
+	private List<ButtonSideTemplate> buttons = new ArrayList<>();
 	private AttackButton attackButton = null;
 	private GoInCity goInCity = null;
 	private MoveHomeButton moveHomeButton = null;
@@ -48,14 +49,7 @@ public class GlobalSidePaper extends PaperSideTemplate {
 		attackButton = new AttackButton();
 		buttons.add(attackButton);
 
-		int index = 0;
-		for (LButton lButton : buttons) {
-			lButton.setLocation(ConstVar.COMMON_SIDE_PAPER_WIDTH_BORD,
-					ConstVar.COMMON_SIDE_PAPER_HEIGHT_BORD + index
-							* ConstVar.COMMON_SIDE_BUR_HEIGHT);
-			index ++;
-			add(lButton);
-		}
+		setButtons(this.buttons);
 	}
 
 }
