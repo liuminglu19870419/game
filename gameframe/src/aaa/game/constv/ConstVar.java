@@ -10,6 +10,7 @@ public final class ConstVar {
 
 	public final static String GAME_CURSOR = "images/cursor.png";
 	public final static int FPS = 100;
+	public final static boolean DEBUG = true;
 
 	public final static int GLOBAL_WIDTH = 1240;
 	public final static int GLOBAL_HEIGHT = 860;
@@ -67,6 +68,8 @@ public final class ConstVar {
 		public final static String MAIN_FACILITY = "city_facility";
 		public final static String FACILITIES_KEY = "facilities";
 		public final static String CITY_BACK_IMAGE = "background";
+		public final static String CITY_X = "x";
+		public final static String CITY_Y = "y";
 	}
 
 	static public class Facility {

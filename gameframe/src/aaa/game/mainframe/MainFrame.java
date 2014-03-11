@@ -23,6 +23,8 @@ public class MainFrame extends GameScene {
 		super("game", ConstVar.GLOBAL_WIDTH, ConstVar.GLOBAL_HEIGHT);
 		this.setCursor(ConstVar.GAME_CURSOR);
 		this.getDeploy().setLogo(false);
+		this.getDeploy().setShowFPS(ConstVar.DEBUG);
+		this.getDeploy().setFPS(ConstVar.FPS);
 	}
 
 	public static void start() {
@@ -52,8 +54,6 @@ public class MainFrame extends GameScene {
 
 	private static void startScreen(ScreenTemplate screenTemplate) {
 		mainFrame.getDeploy().setScreen(screenTemplate);
-//		mainFrame.setDeploy(new Deploy(screenTemplate.getHandler()));
-//		mainFrame.getDeploy().mainLoop();
 	}
 
 	public static MainFrame getFrame() {

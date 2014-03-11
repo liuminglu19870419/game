@@ -20,7 +20,11 @@ public class ShareData {
 
 		// 街道测试
 		cities.set(ConstVar.City.CITY_ID_PRE + "00100", ConstVar.City.NAME_KEY,
-				"city1");
+				"兰州");
+		cities.set(ConstVar.City.CITY_ID_PRE + "00100", ConstVar.City.CITY_X,
+				"300");
+		cities.set(ConstVar.City.CITY_ID_PRE + "00100", ConstVar.City.CITY_Y,
+				"500");
 		cities.set(ConstVar.City.CITY_ID_PRE + "00100",
 				ConstVar.City.CITY_BACK_IMAGE, "images/city.jpg");
 		cities.add(ConstVar.City.CITY_ID_PRE + "00100",
@@ -33,7 +37,11 @@ public class ShareData {
 				ConstVar.City.FACILITIES_KEY, ConstVar.Facility.FACILITY_ID_PRE
 						+ "00102");
 		cities.set(ConstVar.City.CITY_ID_PRE + "00101", ConstVar.City.NAME_KEY,
-				"city2");
+				"拉面");
+		cities.set(ConstVar.City.CITY_ID_PRE + "00101", ConstVar.City.CITY_X,
+				"600");
+		cities.set(ConstVar.City.CITY_ID_PRE + "00101", ConstVar.City.CITY_Y,
+				"500");
 		cities.set(ConstVar.City.CITY_ID_PRE + "00101",
 				ConstVar.City.CITY_BACK_IMAGE, "images/city2.jpg");
 		cities.add(ConstVar.City.CITY_ID_PRE + "00101",

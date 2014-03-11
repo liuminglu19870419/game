@@ -12,11 +12,35 @@ public class CityButton extends LButton {
 	private String cityId = null;
 	private boolean isSelect = false;
 
+
+	public int getxPos() {
+		return xPos;
+	}
+
+	public void setxPos(int xPos) {
+		this.xPos = xPos;
+	}
+
+	public int getyPos() {
+		return yPos;
+	}
+
+	public void setyPos(int yPos) {
+		this.yPos = yPos;
+	}
+
+	private int xPos = 0;
+	private int yPos = 0;
+	
+
 	public CityButton(String id) {
 		super(buttonImage, null, 140,88,0,0);
 		// TODO Auto-generated constructor stub
 		this.cityId = id;
 		setText(ShareData.cities.get(id, ConstVar.City.NAME_KEY));
+		xPos = Integer.parseInt(ShareData.cities.get(id, ConstVar.City.CITY_X));
+		yPos = Integer.parseInt(ShareData.cities.get(id, ConstVar.City.CITY_Y));
+		setLocation(xPos, yPos);
 	}
 
 	public String getId() {
