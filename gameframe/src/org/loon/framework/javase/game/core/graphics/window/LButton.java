@@ -40,7 +40,7 @@ public class LButton extends LComponent {
 	public void setForceSelect(boolean select) {
 		this.isForceSelect = select;
 		this.over = select;
-		this.pressed = select;
+		this.pressed = !select;
 	}
 
 	private int pressedTime;

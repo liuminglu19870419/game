@@ -43,9 +43,9 @@ public class MainScreen extends Screen {
 
 	int lButtonx = 500;
 	int lButtony = 500;
-	LButton lButton = new LButton("images/button.png");
+	LButton lButton = new LButton("images/citybutton.png");
 	{
-		lButton.setLocation(500, 500);
+		lButton.setLocation(640, 840);
 		add(lButton);
 	}
 	List<LButton> buttons2 = new ArrayList<>();
@@ -148,8 +148,8 @@ public class MainScreen extends Screen {
 		} else if (getMouseX() >= 1430) {
 			imagex += xSpeed;
 			xSpeed++;
-			if (imagex > 5120 - 1440) {
-				imagex = 5120 - 1440;
+			if (imagex > 3600 - 1440) {
+				imagex = 3600 - 1440;
 				xSpeed = 5;
 			}
 		} else {
@@ -165,8 +165,8 @@ public class MainScreen extends Screen {
 		} else if (getMouseY() > 950) {
 			imagey += ySpeed;
 			ySpeed++;
-			if (imagey > 3200 - 960) {
-				imagey = 3200 - 960;
+			if (imagey > 2304 - 960) {
+				imagey = 2304 - 960;
 				ySpeed = 5;
 			}
 		} else {
@@ -197,7 +197,7 @@ public class MainScreen extends Screen {
 
 	BufferedImage bufferedImage = null;
 	{
-		File file = new File("images/global.jpg");
+		File file = new File("images/glob_map1.png");
 		FileInputStream fileInputStream;
 		try {
 			fileInputStream = new FileInputStream(file);
@@ -215,7 +215,7 @@ public class MainScreen extends Screen {
 		GraphicsUtils.setAntialias((Graphics) g, true);
 		System.out.println(imagex);
 		System.out.println(imagey);
-		lButton.setLocation(-imagex + 200, -imagey + 200);
+		lButton.setLocation(-imagex + 300, -imagey + 400);
 		g.drawImage(bufferedImage.getSubimage(imagex, imagey, 1440, 960), null,
 				0, 0);
 		g.setFont(GraphicsUtils.getFont("������κ", 20));

@@ -1,8 +1,9 @@
 package aaa.game.component.paper;
 
-import java.awt.Color;
+import java.awt.Image;
 import java.util.List;
 
+import org.loon.framework.javase.game.action.avg.MessageDialog;
 import org.loon.framework.javase.game.core.graphics.window.LPaper;
 
 import aaa.game.component.button.ButtonBottomTemplate;
@@ -25,7 +26,13 @@ public class PaperBottomTemplate extends LPaper {
 				+ ConstVar.COMMON_SIDE_BUR_HEIGHT * line;
 		setSize(width, height);
 		setAlpha(ConstVar.COMMON_SIDE_ALPHA);
-//		setBackground(Color.WHITE);
+		if (height != currentHeight) {
+			back_image = MessageDialog.getRMXPDialog(
+					ConstVar.COMMON_BOTTOM_BACK_IMAGE, width, height);
+			setBackground(back_image);
+			currentHeight = height;
+		}
+		// setBackground(Color.WHITE);
 	}
 
 	/**
@@ -41,8 +48,17 @@ public class PaperBottomTemplate extends LPaper {
 				* ConstVar.COMMON_BOTTOM_BUR_WIDTH;
 		int height = ConstVar.COMMON_BOTTOM_PAPER_HEIGHT_BORD * 2
 				+ ConstVar.COMMON_BOTTOM_BUR_HEIGHT * line;
+		if (height != currentHeight) {
+			back_image = MessageDialog.getRMXPDialog(
+					ConstVar.COMMON_BOTTOM_BACK_IMAGE, width, height);
+			setBackground(back_image);
+			currentHeight = height;
+		}
 		setSize(width, height);
 	}
+
+	static private Image back_image;
+	static private int currentHeight = 0;
 
 	/**
 	 * 根据按钮列表，将底部栏重新填充，需要确保原来的边框已经被清空

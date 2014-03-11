@@ -1,29 +1,43 @@
-package aaa.game.city.paper;
+package aaa.game.facility.paper;
 
 import java.util.ArrayList;
 import java.util.List;
 
-import org.loon.framework.javase.game.core.graphics.window.LButton;
-
-import aaa.game.city.button.CitySideButtonFactory;
-import aaa.game.city.screen.CityScreen;
 import aaa.game.component.button.ButtonSideTemplate;
 import aaa.game.component.button.SideButtonBack;
 import aaa.game.component.paper.PaperSideTemplate;
 import aaa.game.constv.ConstVar;
 import aaa.game.data.ShareData;
+import aaa.game.facility.button.FacilitySideButtonFactory;
+import aaa.game.facility.screen.FacilityScreen;
 
-public class CitySidePaper extends PaperSideTemplate {
+public class FacilitySidePaper extends PaperSideTemplate {
 
 	private List<ButtonSideTemplate> buttonSideTemplates = new ArrayList<>();
 	private String cityId = null;
-
-	public CitySidePaper() {
+	private FacilityScreen currentScreen = null;
+	public FacilitySidePaper() {
 		super(0);
 		// TODO Auto-generated constructor stub
 	}
 
-	public void resetCitySidePaper(String cityId) {
+	public List<ButtonSideTemplate> getButtons() {
+		return buttonSideTemplates;
+	}
+	
+	/**
+	 * 使用一组按钮重新归一化设施按钮*/
+	public void resetFacilitySidePaper(List<ButtonSideTemplate> list) {
+		for (ButtonSideTemplate buttonSideTemplate : this.buttonSideTemplates) {
+			this.remove(buttonSideTemplate);
+		}
+		buttonSideTemplates = list;
+		setSizeByButtonCount(list.size());
+		setButtons(list);
+	}
+	/**
+	 * 使用城市id号重新设置城市内部设施*/
+	public void resetCitySidePaper(String cityId, FacilityScreen currentScreen) {
 		this.cityId = cityId;
 		for (ButtonSideTemplate buttonSideTemplate : buttonSideTemplates) {
 			this.remove(buttonSideTemplate);
@@ -38,7 +52,7 @@ public class CitySidePaper extends PaperSideTemplate {
 		
 		
 		for (int i = 0; i < length; i++) {
-			ButtonSideTemplate buttonSideTemplate = CitySideButtonFactory
+			ButtonSideTemplate buttonSideTemplate = FacilitySideButtonFactory
 					.getCitySideButton(facilities[i]);
 			buttonSideTemplates.add(buttonSideTemplate);
 		}

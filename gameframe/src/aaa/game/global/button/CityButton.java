@@ -8,12 +8,12 @@ import aaa.game.global.screen.GlobalScreen;
 
 public class CityButton extends LButton {
 
-	static String buttonImage = "images/loli.png";
+	static String buttonImage = "images/citybutton.png";
 	private String cityId = null;
 	private boolean isSelect = false;
 
 	public CityButton(String id) {
-		super(buttonImage);
+		super(buttonImage, null, 140,88,0,0);
 		// TODO Auto-generated constructor stub
 		this.cityId = id;
 		setText(ShareData.cities.get(id, ConstVar.City.NAME_KEY));

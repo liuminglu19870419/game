@@ -1,7 +1,7 @@
 package aaa.game.global.button;
 
-import aaa.game.city.screen.CityScreen;
 import aaa.game.component.button.ButtonSideTemplate;
+import aaa.game.facility.screen.FacilityScreen;
 import aaa.game.global.screen.GlobalScreen;
 import aaa.game.mainframe.MainFrame;
 
@@ -22,8 +22,7 @@ public class GoInCity extends ButtonSideTemplate {
 			if(cityButton.isSelected()) {
 				selectCityId = cityButton.getId();
 				System.out.println(selectCityId);
-				MainFrame.pushScreen(CityScreen.getCityScreen().resetCityScreen(selectCityId));
-//				MainFrame.pushScreen(new GlobalScreen());
+				MainFrame.pushScreen(FacilityScreen.getCityScreen().resetFaciltyScreen(selectCityId));
 				break;
 			}
 		}

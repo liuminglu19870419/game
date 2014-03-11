@@ -58,6 +58,16 @@ public class IPrint {
 
 	private boolean isEnglish;
 
+	private String roleName = null;
+	private int nameX = 0;
+	private int nameY = 0;
+
+	public void setRoleName(String roleName, int nameX, int nameY) {
+		this.roleName = roleName;
+		this.nameX = nameX;
+		this.nameY = nameY;
+	}
+
 	public IPrint(Vector2D vector, int width, int height) {
 		this("", vector, width, height);
 	}
@@ -126,6 +136,7 @@ public class IPrint {
 	}
 
 	public void draw(LGraphics g) {
+
 		draw(g, Color.WHITE);
 	}
 
@@ -133,6 +144,7 @@ public class IPrint {
 		if (!visible) {
 			return;
 		}
+
 		synchronized (showMessages) {
 			this.size = showMessages.length;
 			this.fontSize = isEnglish ? g.getFont().getSize() / 2 : g.getFont()
@@ -202,6 +214,10 @@ public class IPrint {
 					g.drawString(mes, vector.x() + left + leftOffset,
 							(offset * fontHeight) + vector.y() + fontSizeDouble
 									+ topOffset);
+					if (roleName != null) {
+						g.drawString(roleName, vector.x() + nameX, vector.y()
+								+ nameY);
+					}
 					g.setAntiAlias(false);
 				} else if (!newLine && !onComplete) {
 					g.drawImage(creeseIcon, vector.x() + left + leftOffset
@@ -220,7 +236,9 @@ public class IPrint {
 		if (!visible) {
 			return;
 		}
+
 		alpha = g.getAlpha();
+
 		g.setAlpha(1.0);
 		drawMessage(g, old);
 		g.setAlpha(alpha);

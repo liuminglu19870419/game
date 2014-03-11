@@ -48,6 +48,10 @@ public class LMessage extends LContainer {
 
 	private IPrint print;
 
+	public void setRoleName(String roleName, int x, int y) {
+		print.setRoleName(roleName, x, y);
+	}
+
 	public LMessage(int width, int height) {
 		this(0, 0, width, height);
 	}
@@ -153,15 +157,15 @@ public class LMessage extends LContainer {
 	public void setMessage(String context) {
 		print.setMessage(context);
 	}
-	
+
 	public void setEnglish(boolean e) {
 		print.setEnglish(true);
 	}
-	
+
 	public boolean isEnglish() {
 		return print.isEnglish();
 	}
-	
+
 	private static BufferedImage createformImage(int width, int height) {
 		return GraphicsUtils.createImage(width, height, Transparency.OPAQUE);
 	}
