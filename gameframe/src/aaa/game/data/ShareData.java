@@ -36,6 +36,12 @@ public class ShareData {
 		cities.add(ConstVar.City.CITY_ID_PRE + "00100",
 				ConstVar.City.FACILITIES_KEY, ConstVar.Facility.FACILITY_ID_PRE
 						+ "00102");
+		cities.add(ConstVar.City.CITY_ID_PRE + "00100",
+				ConstVar.City.FACILITIES_KEY, ConstVar.Facility.FACILITY_ID_PRE
+						+ "00109");
+		cities.add(ConstVar.City.CITY_ID_PRE + "00100",
+				ConstVar.City.FACILITIES_KEY, ConstVar.Facility.FACILITY_ID_PRE
+						+ "00110");
 		cities.set(ConstVar.City.CITY_ID_PRE + "00101", ConstVar.City.NAME_KEY,
 				"拉面");
 		cities.set(ConstVar.City.CITY_ID_PRE + "00101", ConstVar.City.CITY_X,
@@ -53,6 +59,15 @@ public class ShareData {
 		cities.add(ConstVar.City.CITY_ID_PRE + "00101",
 				ConstVar.City.FACILITIES_KEY, ConstVar.Facility.FACILITY_ID_PRE
 						+ "00105");
+		cities.add(ConstVar.City.CITY_ID_PRE + "00101",
+				ConstVar.City.FACILITIES_KEY, ConstVar.Facility.FACILITY_ID_PRE
+						+ "00106");
+		cities.add(ConstVar.City.CITY_ID_PRE + "00101",
+				ConstVar.City.FACILITIES_KEY, ConstVar.Facility.FACILITY_ID_PRE
+						+ "00107");
+		cities.add(ConstVar.City.CITY_ID_PRE + "00101",
+				ConstVar.City.FACILITIES_KEY, ConstVar.Facility.FACILITY_ID_PRE
+						+ "00108");
 
 		// 角色测试
 		peoples.set(ConstVar.People.PEOPLE_ID_PRE + "00100",
@@ -91,6 +106,24 @@ public class ShareData {
 				ConstVar.People.PEOPLE_IMAGE_KEY, "images/loli.png");
 		peoples.set(ConstVar.People.PEOPLE_ID_PRE + "00108",
 				ConstVar.People.PEOPLE_IMAGE_KEY, "images/loli.png");
+		peoples.set(ConstVar.People.PEOPLE_ID_PRE + "00100",
+				ConstVar.People.PEOPLE_BODY_IMAGE_KEY, "images/a.png");
+		peoples.set(ConstVar.People.PEOPLE_ID_PRE + "00101",
+				ConstVar.People.PEOPLE_BODY_IMAGE_KEY, "images/b.png");
+		peoples.set(ConstVar.People.PEOPLE_ID_PRE + "00102",
+				ConstVar.People.PEOPLE_BODY_IMAGE_KEY, "images/c.png");
+		peoples.set(ConstVar.People.PEOPLE_ID_PRE + "00103",
+				ConstVar.People.PEOPLE_BODY_IMAGE_KEY, "images/a.png");
+		peoples.set(ConstVar.People.PEOPLE_ID_PRE + "00104",
+				ConstVar.People.PEOPLE_BODY_IMAGE_KEY, "images/b.png");
+		peoples.set(ConstVar.People.PEOPLE_ID_PRE + "00105",
+				ConstVar.People.PEOPLE_BODY_IMAGE_KEY, "images/c.png");
+		peoples.set(ConstVar.People.PEOPLE_ID_PRE + "00106",
+				ConstVar.People.PEOPLE_BODY_IMAGE_KEY, "images/a.png");
+		peoples.set(ConstVar.People.PEOPLE_ID_PRE + "00107",
+				ConstVar.People.PEOPLE_BODY_IMAGE_KEY, "images/b.png");
+		peoples.set(ConstVar.People.PEOPLE_ID_PRE + "00108",
+				ConstVar.People.PEOPLE_BODY_IMAGE_KEY, "images/c.png");
 		// 设施测试
 		/***********************************************************/
 		facilities.set(ConstVar.Facility.FACILITY_ID_PRE + "00100",
@@ -172,6 +205,82 @@ public class ShareData {
 				ConstVar.Facility.PEOPLES_KEY, ConstVar.People.PEOPLE_ID_PRE
 						+ "00107");
 		facilities.add(ConstVar.Facility.FACILITY_ID_PRE + "00105",
+				ConstVar.Facility.PEOPLES_KEY, ConstVar.People.PEOPLE_ID_PRE
+						+ "00108");
+		/***********************************************************/
+		facilities.set(ConstVar.Facility.FACILITY_ID_PRE + "00106",
+				ConstVar.Facility.NAME_KEY, "青楼");
+		facilities.set(ConstVar.Facility.FACILITY_ID_PRE + "00106",
+				ConstVar.Facility.BACK_IMAGE, "images/qinglou.jpg");
+		facilities
+				.set(ConstVar.Facility.FACILITY_ID_PRE + "00106",
+						ConstVar.Facility.CITY_KEY, ConstVar.City.CITY_ID_PRE
+								+ "00101");
+		facilities.add(ConstVar.Facility.FACILITY_ID_PRE + "00106",
+				ConstVar.Facility.PEOPLES_KEY, ConstVar.People.PEOPLE_ID_PRE
+						+ "00107");
+		facilities.add(ConstVar.Facility.FACILITY_ID_PRE + "00106",
+				ConstVar.Facility.PEOPLES_KEY, ConstVar.People.PEOPLE_ID_PRE
+						+ "00108");
+		/***********************************************************/
+		facilities.set(ConstVar.Facility.FACILITY_ID_PRE + "00107",
+				ConstVar.Facility.NAME_KEY, "兵营");
+		facilities.set(ConstVar.Facility.FACILITY_ID_PRE + "00107",
+				ConstVar.Facility.BACK_IMAGE, "images/datie.png");
+		facilities
+				.set(ConstVar.Facility.FACILITY_ID_PRE + "00107",
+						ConstVar.Facility.CITY_KEY, ConstVar.City.CITY_ID_PRE
+								+ "00101");
+		facilities.add(ConstVar.Facility.FACILITY_ID_PRE + "00107",
+				ConstVar.Facility.PEOPLES_KEY, ConstVar.People.PEOPLE_ID_PRE
+						+ "00107");
+		facilities.add(ConstVar.Facility.FACILITY_ID_PRE + "00107",
+				ConstVar.Facility.PEOPLES_KEY, ConstVar.People.PEOPLE_ID_PRE
+						+ "00108");
+		/***********************************************************/
+		facilities.set(ConstVar.Facility.FACILITY_ID_PRE + "00108",
+				ConstVar.Facility.NAME_KEY, "赌场");
+		facilities.set(ConstVar.Facility.FACILITY_ID_PRE + "00108",
+				ConstVar.Facility.BACK_IMAGE, "images/datie.png");
+		facilities
+				.set(ConstVar.Facility.FACILITY_ID_PRE + "00108",
+						ConstVar.Facility.CITY_KEY, ConstVar.City.CITY_ID_PRE
+								+ "00101");
+		facilities.add(ConstVar.Facility.FACILITY_ID_PRE + "00108",
+				ConstVar.Facility.PEOPLES_KEY, ConstVar.People.PEOPLE_ID_PRE
+						+ "00107");
+		facilities.add(ConstVar.Facility.FACILITY_ID_PRE + "00108",
+				ConstVar.Facility.PEOPLES_KEY, ConstVar.People.PEOPLE_ID_PRE
+						+ "00108");
+		/***********************************************************/
+		facilities.set(ConstVar.Facility.FACILITY_ID_PRE + "00109",
+				ConstVar.Facility.NAME_KEY, "野外");
+		facilities.set(ConstVar.Facility.FACILITY_ID_PRE + "00109",
+				ConstVar.Facility.BACK_IMAGE, "images/datie.png");
+		facilities
+				.set(ConstVar.Facility.FACILITY_ID_PRE + "00109",
+						ConstVar.Facility.CITY_KEY, ConstVar.City.CITY_ID_PRE
+								+ "00100");
+		facilities.add(ConstVar.Facility.FACILITY_ID_PRE + "00109",
+				ConstVar.Facility.PEOPLES_KEY, ConstVar.People.PEOPLE_ID_PRE
+						+ "00107");
+		facilities.add(ConstVar.Facility.FACILITY_ID_PRE + "00109",
+				ConstVar.Facility.PEOPLES_KEY, ConstVar.People.PEOPLE_ID_PRE
+						+ "00108");
+
+		/***********************************************************/
+		facilities.set(ConstVar.Facility.FACILITY_ID_PRE + "00110",
+				ConstVar.Facility.NAME_KEY, "酒馆");
+		facilities.set(ConstVar.Facility.FACILITY_ID_PRE + "00110",
+				ConstVar.Facility.BACK_IMAGE, "images/datie.png");
+		facilities
+				.set(ConstVar.Facility.FACILITY_ID_PRE + "00110",
+						ConstVar.Facility.CITY_KEY, ConstVar.City.CITY_ID_PRE
+								+ "00100");
+		facilities.add(ConstVar.Facility.FACILITY_ID_PRE + "00110",
+				ConstVar.Facility.PEOPLES_KEY, ConstVar.People.PEOPLE_ID_PRE
+						+ "00107");
+		facilities.add(ConstVar.Facility.FACILITY_ID_PRE + "00110",
 				ConstVar.Facility.PEOPLES_KEY, ConstVar.People.PEOPLE_ID_PRE
 						+ "00108");
 	}

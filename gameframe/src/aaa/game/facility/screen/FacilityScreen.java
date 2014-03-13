@@ -3,9 +3,12 @@ package aaa.game.facility.screen;
 import java.awt.Image;
 import java.awt.event.KeyEvent;
 import java.awt.event.MouseEvent;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 import org.loon.framework.javase.game.action.avg.MessageDialog;
+import org.loon.framework.javase.game.action.sprite.SpriteImage;
 import org.loon.framework.javase.game.core.graphics.device.LGraphics;
 import org.loon.framework.javase.game.core.graphics.window.LMessage;
 import org.loon.framework.javase.game.core.graphics.window.LPaper;
@@ -23,8 +26,48 @@ public class FacilityScreen extends ScreenTemplate {
 	protected FacilityBottomPaper facilityBottomPaper = null;
 	protected String backImage = null;
 	protected LMessage messagePaper = null;
+	private Map<String, SpriteImage> spriteImages = new HashMap<String, SpriteImage>();
 	private LPaper face = new LPaper(15, 15, 90, 90);
 
+	public void initialMessageDialog(String eventId, String... roleIds) {
+		// 首先将原来的对话中存在的人物移除
+		for (String id : spriteImages.keySet()) {
+			this.remove(spriteImages.get(id));
+		}
+
+		// 添加新的人物
+		spriteImages = new HashMap<String, SpriteImage>();
+		for (String roleId : roleIds) {
+			SpriteImage spriteImage = new SpriteImage(ShareData.peoples.get(
+					roleId, ConstVar.People.PEOPLE_BODY_IMAGE_KEY));
+			spriteImages.put(roleId, spriteImage);
+			spriteImage.setLocation(650, 250);
+			spriteImage.setVisible(false);
+			add(spriteImage);
+		}
+
+	}
+
+	public void setMessage(String roleId, String message) {
+		for (String id : spriteImages.keySet()) {
+			if (id.equals(roleId)) {
+				spriteImages.get(roleId).setVisible(true);
+			} else {
+				spriteImages.get(id).setVisible(false);
+			}
+		}
+		setMessagePaper(roleId);
+		messagePaper.setMessage(message);
+	}
+
+	public void setMessageVisible(boolean isVisible) {
+		messagePaper.setVisible(isVisible);
+		if(!isVisible) {
+			for (String string : spriteImages.keySet()) {
+				spriteImages.get(string).setVisible(false);
+			}
+		}
+	}
 	static private class CitySingle {
 
 		static public FacilityScreen cityScreen = new FacilityScreen();
@@ -40,7 +83,16 @@ public class FacilityScreen extends ScreenTemplate {
 		this.add(facilitySidePaper);
 		this.add(facilityBottomPaper);
 		messagePaper = new LMessage(ConstVar.COMMON_BOTTOM_MESSAGE_WIDTH,
-				ConstVar.COMMON_BOTTOM_MESSAGE_HEIGHT);
+				ConstVar.COMMON_BOTTOM_MESSAGE_HEIGHT) {
+			int count = 1;
+
+			@Override
+			public void doClick() {
+				// TODO Auto-generated method stub
+				super.doClick();
+
+			};
+		};
 		messagePaper.setLocation(ConstVar.COMMON_BOTTOM_MESSAGE_X,
 				ConstVar.COMMON_BOTTOM_MESSAGE_Y);
 		Image messageBackImage = MessageDialog.getRMXPDialog(

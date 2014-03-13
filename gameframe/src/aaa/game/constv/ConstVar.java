@@ -55,6 +55,7 @@ public final class ConstVar {
 	static public class People {
 		public final static String PEOPLE_ID_PRE = "rol";
 		public final static String PEOPLE_IMAGE_KEY = "image_head";
+		public final static String PEOPLE_BODY_IMAGE_KEY = "image_body";
 		public final static String NAME_KEY = "name";
 		public final static String CITY_KEY = "city";
 		public final static String FACILITY_KEY = "facility";

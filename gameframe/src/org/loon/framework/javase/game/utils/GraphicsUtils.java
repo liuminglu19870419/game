@@ -2083,7 +2083,9 @@ final public class GraphicsUtils {
 			os = new ByteArrayOutputStream(16384);
 
 			in = new DataInputStream(new BufferedInputStream(
-					LSystem.classLoader.getResourceAsStream(innerFileName)));
+					new FileInputStream(innerFileName)));
+//			in = new DataInputStream(new BufferedInputStream(
+//					LSystem.classLoader.getResourceAsStream(innerFileName)));
 
 			bytes = new byte[16384];
 			while ((read = in.read(bytes)) >= 0) {
