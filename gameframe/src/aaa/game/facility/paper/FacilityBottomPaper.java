@@ -11,24 +11,34 @@ import aaa.game.facility.screen.FacilityScreen;
 import aaa.game.people.button.CommonPeopleButton;
 
 public class FacilityBottomPaper extends PaperBottomTemplate {
-	private String facilityId= null;
+	private String facilityId = null;
 	private FacilityScreen currentScreen = null;
 	private List<ButtonBottomTemplate> buttonBottomTemplates = new ArrayList<>();
+
 	public FacilityBottomPaper() {
 		super(0);
 		// TODO Auto-generated constructor stub
 	}
-	
-	public void resetFacilityBottomPaper(String facilityId, FacilityScreen currentScreen) {
+
+	public void resetFacilityBottomPaper(String facilityId,
+			FacilityScreen currentScreen) {
 		this.facilityId = facilityId;
 		this.currentScreen = currentScreen;
 		for (ButtonBottomTemplate buttonBottomTemplate : buttonBottomTemplates) {
 			remove(buttonBottomTemplate);
 		}
 		buttonBottomTemplates = new ArrayList<>();
-		String peoples[] = ShareData.facilities.get(facilityId, ConstVar.Facility.PEOPLES_KEY).split(ConstVar.LIST_ELEMENT_SEPERATOR);
+		String peoples[] = ShareData.facilities.get(facilityId,
+				ConstVar.Facility.PEOPLES_KEY).split(
+				ConstVar.LIST_ELEMENT_SEPERATOR);
+		if (peoples.length == 0) {
+			peoples = new String[1];
+			peoples[0] = ShareData.facilities.get(facilityId,
+					ConstVar.Facility.PEOPLES_KEY);
+		}
 		for (String roleId : peoples) {
-			CommonPeopleButton facilityBottomButton = new CommonPeopleButton(roleId,currentScreen);
+			CommonPeopleButton facilityBottomButton = new CommonPeopleButton(
+					roleId, currentScreen);
 			buttonBottomTemplates.add(facilityBottomButton);
 		}
 		setSizeByButtonCount(buttonBottomTemplates.size());

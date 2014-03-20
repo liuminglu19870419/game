@@ -61,6 +61,7 @@ public final class ConstVar {
 		public final static String FACILITY_KEY = "facility";
 		public final static String FOLLOWERS_KEY = "followers";
 		public final static String ITEMS_KEY = "items";
+		public final static String MONEY = "money";
 	}
 
 	static public class City {
@@ -87,5 +88,44 @@ public final class ConstVar {
 		public final static String NAME_KEY = "name";
 		public final static String SIZE_KEY = "size";
 		public final static String PRICE_KEY = "price";
+	}
+	
+	static public class EventType {
+		public final static String EVENTSUBSET_ID_PRE = "evt";
+		public final static String EVENTSUBSET_LIST = "elist";
+	}
+	static public class Event {
+		public final static String EVN_ID_PRE = "evn";
+		public final static String EVT_ID = "evtid";
+		public final static String EVN_FLAG = "flag";
+//		public final static String EVN_PARAM_LIST= "params";
+		public final static String EVN_DIALOG= "dialogs";
+		public final static String EVN_RESULT= "result";
+		public final static String ATTRIBUTE_SEPERATOR= "-";
+		public final static String EVN_COUNT = "count";
+		public final static String EVN_PRIORITY = "priority";
+		public final static String EVN_DIALOG_SEPERATOR = "#";
+		public final static String EVN_DIALOG_NUM_SEPERATOR = ":";
+		public final static String EVN_DIALOG_ELM_SEPERATOR = "%";
+		public final static String TYPE = "dialog_type";
+		public final static String TYPE_D = "dia";
+		public final static String TYPE_S = "sel";
+		public final static String DIALOG = "dialog";
+		public final static String SELECT_PRE= "s";
+		public final static String RESULT_PRE= "r";
+		public final static String ROLE_ID= "role";
+	}
+	static public class GlobalData {
+		//人物相关的全局信息
+		public final static String CUR_PEOPLE_ID = "cur_people";
+		public final static String CUR_DEAD_PEOPLE = "cur_dead";
+		public final static String MAIN_ROLE= "main";
+		
+		
+		//地点相关的全局信息
+		public final static String CUR_CITY_ID = "cur_city";
+		
+		//设施相关的全局信息
+		public final static String CUR_FACILITY_ID = "cur_facility";
 	}
 }

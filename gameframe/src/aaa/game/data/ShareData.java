@@ -2,6 +2,7 @@ package aaa.game.data;
 
 import aaa.game.constv.ConstVar;
 import aaa.game.model.Data;
+import aaa.game.model.GlobalEventData;
 
 public class ShareData {
 	public static Data cities = new Data();
@@ -12,6 +13,23 @@ public class ShareData {
 	public static Data globalBottomButtons = new Data();
 	public static Data citySideButtons = new Data();
 	public static Data cityBottomButtons = new Data();
+	public static Data events = new Data();
+	public static Data eventTypes = new Data();
+	public static GlobalEventData globalData = new GlobalEventData();
+
+	public static String get(String id, String attribuate) {
+		String pre = id.substring(0, 3);
+		switch (pre) {
+		case ConstVar.People.PEOPLE_ID_PRE:
+			return peoples.get(id, attribuate);
+		case ConstVar.City.CITY_ID_PRE:
+			return cities.get(id, attribuate);
+		case ConstVar.Facility.FACILITY_ID_PRE:
+			return facilities.get(id, attribuate);
+		default:
+			return peoples.get(id, attribuate);
+		}
+	}
 
 	/**
 	 * 输入一些测试案例
@@ -70,8 +88,21 @@ public class ShareData {
 						+ "00108");
 
 		// 角色测试
+		peoples.set(ConstVar.People.PEOPLE_ID_PRE + "00000",
+				ConstVar.People.NAME_KEY, "主角");
+		peoples.set(ConstVar.People.PEOPLE_ID_PRE + "00000",
+				ConstVar.People.PEOPLE_BODY_IMAGE_KEY, "images/b.png");
+		peoples.set(ConstVar.People.PEOPLE_ID_PRE + "00000",
+				ConstVar.People.PEOPLE_IMAGE_KEY, "images/loli.png");
+		peoples.set(ConstVar.People.PEOPLE_ID_PRE + "00000",
+				ConstVar.People.MONEY, "1000");
+		peoples.set(ConstVar.People.PEOPLE_ID_PRE + "00102",
+				ConstVar.People.PEOPLE_IMAGE_KEY, "images/loli.png");
 		peoples.set(ConstVar.People.PEOPLE_ID_PRE + "00100",
 				ConstVar.People.NAME_KEY, "张三丰");
+		peoples.set(ConstVar.People.PEOPLE_ID_PRE + "00100",
+				ConstVar.People.FACILITY_KEY, ConstVar.Facility.FACILITY_ID_PRE
+						+ "00100");
 		peoples.set(ConstVar.People.PEOPLE_ID_PRE + "00101",
 				ConstVar.People.NAME_KEY, "张四");
 		peoples.set(ConstVar.People.PEOPLE_ID_PRE + "00102",
@@ -283,5 +314,102 @@ public class ShareData {
 		facilities.add(ConstVar.Facility.FACILITY_ID_PRE + "00110",
 				ConstVar.Facility.PEOPLES_KEY, ConstVar.People.PEOPLE_ID_PRE
 						+ "00108");
+
+		/********************************************************/
+		eventTypes.add(ConstVar.EventType.EVENTSUBSET_ID_PRE + "00100",
+				ConstVar.EventType.EVENTSUBSET_LIST, ConstVar.Event.EVN_ID_PRE
+						+ "00100");
+		eventTypes.add(ConstVar.EventType.EVENTSUBSET_ID_PRE + "00100",
+				ConstVar.EventType.EVENTSUBSET_LIST, ConstVar.Event.EVN_ID_PRE
+						+ "00101");
+		eventTypes.add(ConstVar.EventType.EVENTSUBSET_ID_PRE + "00100",
+				ConstVar.EventType.EVENTSUBSET_LIST, ConstVar.Event.EVN_ID_PRE
+						+ "00102");
+		eventTypes.add(ConstVar.EventType.EVENTSUBSET_ID_PRE + "00100",
+				ConstVar.EventType.EVENTSUBSET_LIST, ConstVar.Event.EVN_ID_PRE
+						+ "00103");
+		eventTypes.add(ConstVar.EventType.EVENTSUBSET_ID_PRE + "00101",
+				ConstVar.EventType.EVENTSUBSET_LIST, ConstVar.Event.EVN_ID_PRE
+						+ "00104");
+		eventTypes.add(ConstVar.EventType.EVENTSUBSET_ID_PRE + "00101",
+				ConstVar.EventType.EVENTSUBSET_LIST, ConstVar.Event.EVN_ID_PRE
+						+ "00105");
+		eventTypes.add(ConstVar.EventType.EVENTSUBSET_ID_PRE + "00101",
+				ConstVar.EventType.EVENTSUBSET_LIST, ConstVar.Event.EVN_ID_PRE
+						+ "00106");
+
+		/*******************************************************/
+		events.set(ConstVar.Event.EVN_ID_PRE + "00100",
+				ConstVar.Event.EVN_FLAG, "(("
+						+ ConstVar.GlobalData.CUR_PEOPLE_ID
+						+ ConstVar.Event.ATTRIBUTE_SEPERATOR
+						+ ConstVar.People.FACILITY_KEY + "="
+						+ ConstVar.Facility.FACILITY_ID_PRE + "00100))");
+		events.set(ConstVar.Event.EVN_ID_PRE + "00100",
+				ConstVar.Event.EVN_PRIORITY, "1000");
+		events.set(ConstVar.Event.EVN_ID_PRE + "00100",ConstVar.Event.EVN_DIALOG,
+				"#1"+ ConstVar.Event.EVN_DIALOG_NUM_SEPERATOR + ConstVar.GlobalData.CUR_PEOPLE_ID + ConstVar.Event.EVN_DIALOG_ELM_SEPERATOR + "bcda" + 
+				"#2"+ ConstVar.Event.EVN_DIALOG_NUM_SEPERATOR + ConstVar.GlobalData.MAIN_ROLE + ConstVar.Event.EVN_DIALOG_ELM_SEPERATOR + "qwerty" + 
+				"#3"+ ConstVar.Event.EVN_DIALOG_NUM_SEPERATOR + ConstVar.GlobalData.CUR_PEOPLE_ID + ConstVar.Event.EVN_DIALOG_ELM_SEPERATOR + "bcda");
+		events.add(ConstVar.Event.EVN_ID_PRE + "00100",
+				ConstVar.Event.EVN_RESULT, ConstVar.People.PEOPLE_ID_PRE
+						+ "00000." + ConstVar.People.MONEY + "+100");
+		/*************************************************/
+		events.set(ConstVar.Event.EVN_ID_PRE + "00101",
+				ConstVar.Event.EVN_FLAG, "");
+		events.set(ConstVar.Event.EVN_ID_PRE + "00101",
+				ConstVar.Event.EVN_DIALOG, "" + "#1:curp:abcdefghijk"
+						+ "#2:main:qwertyyui" + "#3:curp:zxcvbnm," + "");
+		events.add(ConstVar.Event.EVN_ID_PRE + "00101",
+				ConstVar.Event.EVN_RESULT, ConstVar.People.PEOPLE_ID_PRE
+						+ "00000." + ConstVar.People.MONEY + "-100");
+
+		/*************************************************/
+		events.set(ConstVar.Event.EVN_ID_PRE + "00102",
+				ConstVar.Event.EVN_FLAG, "");
+		events.set(ConstVar.Event.EVN_ID_PRE + "00102",
+				ConstVar.Event.EVN_DIALOG, "" + "#1:curp:abcdefghijk"
+						+ "#2:main:qwertyyui" + "#3:curp:zxcvbnm," + "");
+		events.add(ConstVar.Event.EVN_ID_PRE + "00102",
+				ConstVar.Event.EVN_RESULT, "");
+
+		/*************************************************/
+		events.set(ConstVar.Event.EVN_ID_PRE + "00103",
+				ConstVar.Event.EVN_FLAG, "");
+		events.set(ConstVar.Event.EVN_ID_PRE + "00103",
+				ConstVar.Event.EVN_DIALOG, 
+				"#1"+ ConstVar.Event.EVN_DIALOG_NUM_SEPERATOR + ConstVar.GlobalData.CUR_PEOPLE_ID + ConstVar.Event.EVN_DIALOG_ELM_SEPERATOR + "bcda" + 
+				"#2"+ ConstVar.Event.EVN_DIALOG_NUM_SEPERATOR + ConstVar.GlobalData.MAIN_ROLE + ConstVar.Event.EVN_DIALOG_ELM_SEPERATOR + "qwerty" + 
+				"#3"+ ConstVar.Event.EVN_DIALOG_NUM_SEPERATOR + ConstVar.GlobalData.CUR_PEOPLE_ID + ConstVar.Event.EVN_DIALOG_ELM_SEPERATOR + "bcda");
+
+		events.add(ConstVar.Event.EVN_ID_PRE + "00103",
+				ConstVar.Event.EVN_RESULT, "");
+
+		/*************************************************/
+		events.set(ConstVar.Event.EVN_ID_PRE + "00104",
+				ConstVar.Event.EVN_FLAG, "");
+		events.set(ConstVar.Event.EVN_ID_PRE + "00104",
+				ConstVar.Event.EVN_DIALOG, "" + "#1:curp:abcdefghijk"
+						+ "#2:main:qwertyyui" + "#3:curp:zxcvbnm," + "");
+		events.add(ConstVar.Event.EVN_ID_PRE + "00104",
+				ConstVar.Event.EVN_RESULT, "");
+
+		/*************************************************/
+		events.set(ConstVar.Event.EVN_ID_PRE + "00105",
+				ConstVar.Event.EVN_FLAG, "");
+		events.set(ConstVar.Event.EVN_ID_PRE + "00105",
+				ConstVar.Event.EVN_DIALOG, "" + "#1:curp:abcdefghijk"
+						+ "#2:main:qwertyyui" + "#3:curp:zxcvbnm," + "");
+		events.add(ConstVar.Event.EVN_ID_PRE + "00105",
+				ConstVar.Event.EVN_RESULT, "");
+
+		/*************************************************/
+		events.set(ConstVar.Event.EVN_ID_PRE + "00106",
+				ConstVar.Event.EVN_FLAG, "");
+		events.set(ConstVar.Event.EVN_ID_PRE + "00106",
+				ConstVar.Event.EVN_DIALOG, "" + "#1:curp:abcdefghijk"
+						+ "#2:main:qwertyyui" + "#3:curp:zxcvbnm," + "");
+		events.add(ConstVar.Event.EVN_ID_PRE + "00106",
+				ConstVar.Event.EVN_RESULT, "");
 	}
 }

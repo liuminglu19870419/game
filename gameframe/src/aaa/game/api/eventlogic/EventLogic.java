@@ -4,85 +4,74 @@ import java.lang.reflect.Method;
 import java.util.ArrayList;
 import java.util.Stack;
 
+import aaa.game.constv.ConstVar;
+import aaa.game.data.ShareData;
+
 /**
- * 随机事件生成逻辑，用于选择对话的具体内容
+ * 随机事件生成逻辑，用于选择事件
  */
 public class EventLogic {
 
 	private static final String TRUE = "TRUE";
 	private static final String FALSE = "FALSE";
 	private StringBuilder stringBuilder = null;
-	// private Stack<ReturnTuple<SymbolType, String>> valueStack = null;
 	private Stack<String> valueStack = null;
 	private Class<?> complexLogicClass = EventLogic.class;// 存储计算复杂逻辑的函数的类
 	private static final String regule = "()~!<>=&|";
-
-	private static enum SymbolType {
-		CHAR, EQUAL, GRE, LES, NEQ, AND, OR, NOT, LEFT, RIGHT, FUN, TRUE, FALSE
-	};
-
-	private static class ReturnTuple<A, B> {
-		public final A type;
-		public final B value;
-
-		public ReturnTuple(A a, B b) {
-			type = a;
-			value = b;
-		}
+	
+	protected EventLogic() {
+		
 	}
-
 	/**
 	 * 输入事件判断字符串验证是否满足条件
 	 */
 	public boolean isSatisfy(String eventFlag) {
+		eventFlag = eventFlag.replace("\t", ""); // 去除空字符
+		eventFlag = eventFlag.replace(" ", "");
 		stringBuilder = new StringBuilder(eventFlag);// 将要判断的字符串首先缓存起来，便于后面操作
 		valueStack = new Stack<>();
 		return logicPhrase().equals(TRUE);
 	}
 
-	public String logicPhrase() {
+	private String logicPhrase() {
+		String result = null;
 		while (stringBuilder.length() != 0) {
 			String element = getElement(stringBuilder);
+			String value1 = null;
+			String value2 = null;
+			String symbol = null;
 			if (element.equals("(")) {
-				String value1, symbol, value2;
-				//出栈顺序计算方式有待于研究
+				for (;;) {
+					value1 = valueStack.pop();
+					symbol = valueStack.pop();
+					if (symbol.contains(")")) {
+						valueStack.push(value1);
+						break;
+					} else {
+						value2 = valueStack.pop();// 双目运算符
+						result = calcLogicPair(symbol, value2, value1);
+						valueStack.push(result);
+					}
+				}
 			} else {
+				if ("<>=~".contains(element)) {// 对于高优先级的计算，直接计算结果并返回
+					value1 = valueStack.pop();
+					value2 = getElement(stringBuilder);
+					element = calcLogicPair(element, value2, value1);
+				} else if ("!".contains(element)) {
+					value1 = valueStack.pop();
+					element = calcLogicPair(element, value1, null);
+				}
 				valueStack.push(element);
 			}
 		}
-
-		return null;
+		return valueStack.pop();
 	}
 
 	/**
 	 * 提取判断字符串的一个元素 这个元素可能是一个变量或者是一个操作符号 从右往左提取
 	 */
-
-	// public ReturnTuple<SymbolType, String> getElement(StringBuilder flag) {
-	// StringBuilder stringBuilder = new StringBuilder();
-	// SymbolType symbolType = null;
-	// char lastChar = flag.charAt(flag.length() - 1);
-	// symbolType = getCharType(lastChar);
-	// if (symbolType == symbolType.CHAR || symbolType == symbolType.FUN) {
-	// do {
-	// stringBuilder.insert(0, lastChar);
-	// flag.deleteCharAt(flag.length() - 1);
-	// if (flag.length() == 0) {
-	// break;
-	// }
-	// lastChar = flag.charAt(flag.length() - 1);
-	// if (getCharType(lastChar) != SymbolType.CHAR) {
-	// break;
-	// }
-	// } while (true);
-	// } else {
-	// stringBuilder.insert(0, lastChar);
-	// flag.deleteCharAt(flag.length() - 1);
-	// }
-	// return new ReturnTuple<SymbolType, String>(symbolType,
-	// stringBuilder.toString());
-	// }
-	public String getElement(StringBuilder flag) {
+	private String getElement(StringBuilder flag) {
 		StringBuilder stringBuilder = new StringBuilder();
 		char lastChar = flag.charAt(flag.length() - 1);
 		if (regule.indexOf(lastChar) < 0) {
@@ -97,6 +86,8 @@ public class EventLogic {
 					break;
 				}
 			} while (true);
+			// 根据获取的字符串判断来自的数据是一个属性值，列表值或是一个复杂逻辑方法返回值计算填入的结果或数值
+			return getValue(stringBuilder.toString());
 		} else {
 			stringBuilder.insert(0, lastChar);
 			flag.deleteCharAt(flag.length() - 1);
@@ -107,93 +98,100 @@ public class EventLogic {
 	/**
 	 * 根据输入逻辑运算符和输入变量对判断逻辑计算结果 返回字符串的TRUE， FALSE
 	 */
-	public String calcLogicPair(String symbol, String value1, String value2) {
+	private String calcLogicPair(String symbol, String value1, String value2) {
 		char a = symbol.charAt(0);
+		if (value1 != null && value1.contains("[")) {
+			value1 = getBoolByFunName(getFunArgs(value1));
+		}
+		if (value2 != null && value2.contains("[")) {
+			value2 = getBoolByFunName(getFunArgs(value2));
+		}
 		String result;
-		switch (getCharType(a)) {
-		case CHAR:
+		switch (a) {
+		case '!':
+			if (value1.equals(FALSE))
+				result = TRUE;
+			else
+				result = FALSE;
 			break;
-		case EQUAL:
+		case '=':
+			if (value1.equals(value2)) {
+				result = TRUE;
+			} else {
+				result = FALSE;
+			}
 			break;
-		case GRE:
-			break;
-		case LES:
-			break;
-		case NEQ:
-			break;
-		case AND:
-			break;
-		case OR:
-			break;
-		case NOT:
-			break;
-		case LEFT:
-			break;
-		case RIGHT:
-			break;
-		case FUN:
-			break;
-		default:
+		case '>': {
+			Double v1Double = Double.valueOf(value1);
+			Double v2Double = Double.valueOf(value2);
+			if (v1Double > v2Double) {
+				result = TRUE;
+			} else {
+				result = FALSE;
+			}
 			break;
 		}
-		return null;
-	}
-
-	/**
-	 * 获得所需属性的值
-	 * */
-	public String getValue(String id_attr_val) {
-		return null;
-	}
-
-	/**
-	 * 根据输入的字符判断他是否是一个括弧，或者字符串 0:这个字符是一个字符的一部分 1:这个字符是一个 逻辑符 2:这个字符是一个等于符
-	 * 3:这个字符是一个比较号4:这个字符是一个左括弧 5:这个字符是一个右括弧
-	 * */
-	public SymbolType getCharType(char a) {
-		SymbolType result;
-		switch (a) {
-		case '=':
-			result = SymbolType.EQUAL;
+		case '<': {
+			Double v1Double = Double.valueOf(value1);
+			Double v2Double = Double.valueOf(value2);
+			if (v1Double < v2Double) {
+				result = TRUE;
+			} else {
+				result = FALSE;
+			}
 			break;
-		case '<':
-			result = SymbolType.LES;
-			break;
-		case '>':
-			result = SymbolType.GRE;
-			break;
+		}
 		case '~':
-			result = SymbolType.NEQ;
+			if (value1.equals(value2)) {
+				result = FALSE;
+			} else {
+				result = TRUE;
+			}
 			break;
-		case '&':
-			result = SymbolType.AND;
+		case '&': {
+			boolean v1b = value1.equals(TRUE) ? true : false;
+			boolean v2b = value2.equals(TRUE) ? true : false;
+			if (v1b && v2b) {
+				result = TRUE;
+			} else {
+				result = FALSE;
+			}
 			break;
-		case '|':
-			result = SymbolType.OR;
+		}
+		case '|': {
+			boolean v1b = value1.equals(TRUE) ? true : false;
+			boolean v2b = value2.equals(TRUE) ? true : false;
+			if (v1b || v2b) {
+				result = TRUE;
+			} else {
+				result = FALSE;
+			}
 			break;
-		case '!':
-			result = SymbolType.NOT;
-			break;
-		case '(':
-			result = SymbolType.LEFT;
-			break;
-		case ')':
-			result = SymbolType.RIGHT;
-			break;
-		case ']':
-			result = SymbolType.FUN;
-			break;
+		}
 		default:
-			result = SymbolType.CHAR;
+			result = TRUE;
 			break;
 		}
 		return result;
 	}
 
 	/**
+	 * 获得所需属性的值
+	 * */
+	private String getValue(String id_attr_val) {
+		String []elems = id_attr_val.split(ConstVar.Event.ATTRIBUTE_SEPERATOR);
+//		String []elems = id_attr_val.split(".");
+		if(elems.length == 1) {
+			return ShareData.globalData.get(id_attr_val);
+		}
+		elems[0] = ShareData.globalData.get(elems[0]);
+		return ShareData.get(elems[0], elems[1]);
+	}
+
+	/**
 	 * 对于过于复杂的逻辑，很难用上述方式表示的，可以 使用一个方法进行描述，通过回调方法名称，和参数返回计算的结果
 	 */
-	public String getBoolByFunName(ArrayList<String> args) {
+	private String getBoolByFunName(ArrayList<String> args) {
 
 		String result = null;
 		String funName = args.get(0);
@@ -228,7 +226,7 @@ public class EventLogic {
 	/**
 	 * 获得方法的参数
 	 */
-	public ArrayList<String> getFunArgs(String funString) {
+	private ArrayList<String> getFunArgs(String funString) {
 		funString = funString.replace("[", ",");
 		funString = funString.replace("]", ",");
 		String fun_Args[] = funString.split(",");
@@ -243,32 +241,43 @@ public class EventLogic {
 	/**
 	 * 对于过于复杂的逻辑，直接使用方法进行判断 此方法用于演示这一功能使用
 	 */
-	public static String flagMethod(String id1, String id2) {
+	private static String flagMethod(String id1, String id2) {
 		System.out.println(id1 + " " + id2);
 		return TRUE;
 	}
 
-	public static String flagMethod2() {
+	private static String flagMethod2() {
 		return FALSE;
 	}
 
 	public static void main(String[] args) {
-		StringBuilder stringBuilder = new StringBuilder("bcd");
-		stringBuilder.insert(0, 'a');
-		System.out.println(stringBuilder);
+		// StringBuilder stringBuilder = new StringBuilder("bcd");
+		// stringBuilder.insert(0, 'a');
+		// System.out.println(stringBuilder);
 		EventLogic eventLogic = new EventLogic();
-		ArrayList<String> arg = new ArrayList<>();
-		arg.add("flagMethod");
-		arg.add("id");
-		arg.add("id2");
-		System.out.println(eventLogic.getBoolByFunName(arg));
-		System.out.println(eventLogic.getBoolByFunName(eventLogic
-				.getFunArgs("flagMethod2[]")));
-		StringBuilder stringBuilder2 = new StringBuilder(
-				"(abc!defgh~ijk[fdasf,fadf]lmnopq&rstuv&||wxyz<ABCDEF>GHIJKLMN(OPQRSTUVW)XYZ)");
-		while (stringBuilder2.length() != 0) {
-			String ret = eventLogic.getElement(stringBuilder2);
-			System.out.println(ret);
+		// ArrayList<String> arg = new ArrayList<>();
+		// arg.add("flagMethod");
+		// arg.add("id");
+		// arg.add("id2");
+		// System.out.println(eventLogic.getBoolByFunName(arg));
+		// System.out.println(eventLogic.getBoolByFunName(eventLogic
+		// .getFunArgs("flagMethod2[]")));
+		// StringBuilder stringBuilder2 = new StringBuilder(
+		// "(abc!defgh~ijk[fdasf,fadf]lmnopq&rstuv&||wxyz<ABCDEF>GHIJKLMN(OPQRSTUVW)XYZ)");
+		// while (stringBuilder2.length() != 0) {
+		// String ret = eventLogic.getElement(stringBuilder2);
+		// System.out.println(ret);
+		// }
+		String testString = "(((12~12|21>123)&(ab=ab))|(3<2))|(((12~12|21>123)&(ab=ab))|(3<2))";
+		ArrayList<String> arr = new ArrayList<>();
+		for (int i = 0; i < 100; i++) {
+			arr.add(testString);
 		}
+		long start = System.currentTimeMillis();
+		for (String string : arr) {
+			boolean result = eventLogic.isSatisfy(string);
+		}
+		long end = System.currentTimeMillis() - start;
+		System.out.println(end);
 	}
 }

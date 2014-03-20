@@ -72,6 +72,10 @@ public class Data implements IModel {
 		if (map.containsKey(id) && map.get(id).containsKey(attribuate)) {
 			String[] elementStrings = map.get(id).get(attribuate)
 					.split(ConstVar.LIST_ELEMENT_SEPERATOR);
+			if(elementStrings.length == 0) {
+				elementStrings = new String[1];
+				elementStrings[0] = map.get(id).get(attribuate);
+			}
 			StringBuilder stringBuilder = new StringBuilder();
 			for (String string : elementStrings) {
 				if (!string.equals(value)) {
@@ -87,5 +91,11 @@ public class Data implements IModel {
 			return true;
 		}
 		return false;
+	}
+
+	@Override
+	public Map<String, String> get(String id) {
+		// TODO Auto-generated method stub
+		return map.get(id);
 	}
 }
